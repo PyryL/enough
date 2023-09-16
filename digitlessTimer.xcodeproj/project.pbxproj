@@ -16,6 +16,7 @@
 		44379F5E2AB5B306008E81BF /* StopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F5D2AB5B306008E81BF /* StopButtonView.swift */; };
 		44379F612AB5B690008E81BF /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F602AB5B690008E81BF /* BackgroundColorView.swift */; };
 		44379F632AB5B7EA008E81BF /* PreventSleepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */; };
+		44379F652AB5C764008E81BF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F642AB5C764008E81BF /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		44379F5F2AB5B54A008E81BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		44379F602AB5B690008E81BF /* BackgroundColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
 		44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventSleepModifier.swift; sourceTree = "<group>"; };
+		44379F642AB5C764008E81BF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				44379F592AB57D99008E81BF /* TimerManager.swift */,
 				44379F5B2AB57F41008E81BF /* SetTimerView.swift */,
 				44379F5D2AB5B306008E81BF /* StopButtonView.swift */,
+				44379F642AB5C764008E81BF /* SettingsView.swift */,
 				44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */,
 				44379F4F2AB57D66008E81BF /* Assets.xcassets */,
 				44379F512AB57D66008E81BF /* Preview Content */,
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44379F5A2AB57D99008E81BF /* TimerManager.swift in Sources */,
+				44379F652AB5C764008E81BF /* SettingsView.swift in Sources */,
 				44379F5C2AB57F41008E81BF /* SetTimerView.swift in Sources */,
 				44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */,
 				44379F4C2AB57D65008E81BF /* digitlessTimerApp.swift in Sources */,
