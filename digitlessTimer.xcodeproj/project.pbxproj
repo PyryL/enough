@@ -66,13 +66,8 @@
 			children = (
 				44379F5F2AB5B54A008E81BF /* Info.plist */,
 				44379F4B2AB57D65008E81BF /* digitlessTimerApp.swift */,
-				44379F4D2AB57D65008E81BF /* ContentView.swift */,
-				44379F602AB5B690008E81BF /* BackgroundColorView.swift */,
-				44379F592AB57D99008E81BF /* TimerManager.swift */,
-				44379F5B2AB57F41008E81BF /* SetTimerView.swift */,
-				44379F5D2AB5B306008E81BF /* StopButtonView.swift */,
-				44379F642AB5C764008E81BF /* SettingsView.swift */,
-				44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */,
+				44379F662AB5CD56008E81BF /* UI */,
+				44379F672AB5CD65008E81BF /* Utilities */,
 				44379F4F2AB57D66008E81BF /* Assets.xcassets */,
 				44379F512AB57D66008E81BF /* Preview Content */,
 			);
@@ -85,6 +80,27 @@
 				44379F522AB57D66008E81BF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		44379F662AB5CD56008E81BF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				44379F4D2AB57D65008E81BF /* ContentView.swift */,
+				44379F602AB5B690008E81BF /* BackgroundColorView.swift */,
+				44379F5B2AB57F41008E81BF /* SetTimerView.swift */,
+				44379F5D2AB5B306008E81BF /* StopButtonView.swift */,
+				44379F642AB5C764008E81BF /* SettingsView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		44379F672AB5CD65008E81BF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				44379F592AB57D99008E81BF /* TimerManager.swift */,
+				44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
