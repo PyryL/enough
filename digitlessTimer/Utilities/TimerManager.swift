@@ -17,13 +17,6 @@ class TimerManager: ObservableObject {
             object: nil)
     }
     
-    #if DEBUG
-    init(isGreen: Bool) {
-        state = isGreen ? .green : .red
-        timerTargetDate = Date(timeIntervalSinceNow: isGreen ? -60 : 60)
-    }
-    #endif
-    
     @Published private(set) var state: TimerState = .notStarted
     private var timerTargetDate: Date? = nil
     private var targetTimer: Timer? = nil
