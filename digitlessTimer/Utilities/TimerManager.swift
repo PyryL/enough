@@ -24,15 +24,12 @@ class TimerManager: ObservableObject {
     }
     #endif
     
-    private let userDefaults = UserDefaults.standard
-    private let userDefaultsKey: String = "timerTargetDate"
-    
     @Published private(set) var state: TimerState = .notStarted
     private var timerTargetDate: Date? = nil
     private var targetTimer: Timer? = nil
     
     private func loadVariablesFromStorage() {
-        let sinceReference = userDefaults.double(forKey: userDefaultsKey)
+        let sinceReference = UserDefaults.suite.double(forKey: UserDefaultsKeys.targetDate)
         if sinceReference > 0 {
             timerTargetDate = Date(timeIntervalSinceReferenceDate: sinceReference)
             state = timerTargetDate!.timeIntervalSinceNow < 0 ? .green : .red
@@ -46,7 +43,8 @@ class TimerManager: ObservableObject {
     func startTimer(duration: TimeInterval) {
         timerTargetDate = Date(timeIntervalSinceNow: duration)
         state = .red
-        userDefaults.setValue(timerTargetDate!.timeIntervalSinceReferenceDate, forKey: userDefaultsKey)
+        let sinceReference = timerTargetDate!.timeIntervalSinceReferenceDate
+        UserDefaults.suite.setValue(sinceReference, forKey: UserDefaultsKeys.targetDate)
         setTimerForTarget()
     }
     
@@ -70,7 +68,7 @@ class TimerManager: ObservableObject {
     func resetTimer() {
         timerTargetDate = nil
         state = .notStarted
-        userDefaults.removeObject(forKey: userDefaultsKey)
+        UserDefaults.suite.removeObject(forKey: UserDefaultsKeys.targetDate)
     }
     
     @objc private func appBecameActive(notification: NSNotification) {
