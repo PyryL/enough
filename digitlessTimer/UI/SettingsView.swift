@@ -12,7 +12,7 @@ struct SettingsView: View {
     
     var creator: Text {
         Text("Created by ") +
-        Text("Pyry Lahtinen").bold()
+        Text("Pyry Lahtinen").bold().foregroundColor(.accentColor)
     }
     
     func openWebsite() {
