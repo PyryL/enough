@@ -8,3 +8,5 @@ Have I done enough yoga? Have I spent enough time reading this book? Enough is a
 
 Copyright (c) 2023 Pyry Lahtinen.
 All rights reserved.
+
+Some third-party resources have been used. For license details, see the settings page in the app.

@@ -47,6 +47,9 @@ struct SettingsView: View {
                     Button(action: rateOnAppStore) {
                         Label("Rate on App Store", systemImage: "star")
                     }
+                    NavigationLink(destination: ThirdPartyLicensesView()) {
+                        Label("Third-party licenses", systemImage: "doc")
+                    }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -56,6 +59,32 @@ struct SettingsView: View {
                         Text("Done")
                     }
                 }
+            }
+        }
+    }
+}
+
+struct ThirdPartyLicensesView: View {
+    func openPage(_ url: URL) {
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    var body: some View {
+        Form {
+            licenseItem(title: "Play symbol in the app icon",
+                        license: "MIT license",
+                        url: URL(string: "https://heroicons.com/")!)
+        }
+        .navigationTitle("Third-party licenses")
+    }
+    
+    @ViewBuilder func licenseItem(title: String, license: String, url: URL) -> some View {
+        Section {
+            Label(title, systemImage: "photo")
+            Label(license, systemImage: "doc")
+            Button(action: { openPage(url) }) {
+                Label(url.host() ?? url.absoluteString, systemImage: "globe")
             }
         }
     }
