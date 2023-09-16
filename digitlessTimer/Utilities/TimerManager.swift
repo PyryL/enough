@@ -41,7 +41,7 @@ class TimerManager: ObservableObject {
     }
     
     func startTimer(duration: TimeInterval) {
-        timerTargetDate = Date(timeIntervalSinceNow: duration)
+        timerTargetDate = Date(timeIntervalSinceNow: max(0.1, duration))
         state = .red
         let sinceReference = timerTargetDate!.timeIntervalSinceReferenceDate
         UserDefaults.suite.setValue(sinceReference, forKey: UserDefaultsKeys.targetDate)
