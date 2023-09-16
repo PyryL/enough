@@ -20,6 +20,7 @@ struct StopButtonView: View {
                 .padding()
         }
         .buttonStyle(.plain)
+        .preventSleep()
     }
 }
 
