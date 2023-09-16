@@ -35,7 +35,7 @@ struct SetTimerView: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.accentColor)
                     .cornerRadius(12)
-                    .padding(.horizontal)
+                    .padding()
             }
             .buttonStyle(.plain)
         }
