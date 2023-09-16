@@ -28,8 +28,7 @@ struct SettingsView: View {
     }
     
     func rateOnAppStore() {
-        // TODO: app id links to EFiCa
-        guard let url = URL(string: "https://itunes.apple.com/app/id1524798779?action=write-review"),
+        guard let url = URL(string: "https://itunes.apple.com/app/id6466716992?action=write-review"),
               UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url)
     }
