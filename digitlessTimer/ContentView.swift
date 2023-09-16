@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var manager = TimerManager()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        switch manager.state {
+        case .notStarted:
+            SetTimerView(manager: manager)
+        case .green, .red:
+            ColorView(manager: manager)
         }
-        .padding()
     }
 }
 

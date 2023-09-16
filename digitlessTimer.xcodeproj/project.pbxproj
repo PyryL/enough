@@ -11,6 +11,9 @@
 		44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F4D2AB57D65008E81BF /* ContentView.swift */; };
 		44379F502AB57D66008E81BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44379F4F2AB57D66008E81BF /* Assets.xcassets */; };
 		44379F532AB57D66008E81BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44379F522AB57D66008E81BF /* Preview Assets.xcassets */; };
+		44379F5A2AB57D99008E81BF /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F592AB57D99008E81BF /* TimerManager.swift */; };
+		44379F5C2AB57F41008E81BF /* SetTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F5B2AB57F41008E81BF /* SetTimerView.swift */; };
+		44379F5E2AB5B306008E81BF /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F5D2AB5B306008E81BF /* ColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		44379F4D2AB57D65008E81BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44379F4F2AB57D66008E81BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44379F522AB57D66008E81BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		44379F592AB57D99008E81BF /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
+		44379F5B2AB57F41008E81BF /* SetTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTimerView.swift; sourceTree = "<group>"; };
+		44379F5D2AB5B306008E81BF /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
+		44379F5F2AB5B54A008E81BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +58,12 @@
 		44379F4A2AB57D65008E81BF /* digitlessTimer */ = {
 			isa = PBXGroup;
 			children = (
+				44379F5F2AB5B54A008E81BF /* Info.plist */,
 				44379F4B2AB57D65008E81BF /* digitlessTimerApp.swift */,
 				44379F4D2AB57D65008E81BF /* ContentView.swift */,
+				44379F592AB57D99008E81BF /* TimerManager.swift */,
+				44379F5B2AB57F41008E81BF /* SetTimerView.swift */,
+				44379F5D2AB5B306008E81BF /* ColorView.swift */,
 				44379F4F2AB57D66008E81BF /* Assets.xcassets */,
 				44379F512AB57D66008E81BF /* Preview Content */,
 			);
@@ -137,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44379F5A2AB57D99008E81BF /* TimerManager.swift in Sources */,
+				44379F5C2AB57F41008E81BF /* SetTimerView.swift in Sources */,
 				44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */,
 				44379F4C2AB57D65008E81BF /* digitlessTimerApp.swift in Sources */,
+				44379F5E2AB5B306008E81BF /* ColorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,11 +284,13 @@
 				DEVELOPMENT_TEAM = K464C9RC38;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = digitlessTimer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Enough?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,11 +315,13 @@
 				DEVELOPMENT_TEAM = K464C9RC38;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = digitlessTimer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Enough?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
