@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SetTimerView: View {
     @StateObject var manager: TimerManager
-    @State var hour: Int = 0
-    @State var minute: Int = 5
-    @State var second: Int = 0
+    @AppStorage(UserDefaultsKeys.timerHours, store: .suite) var hour: Int = 0
+    @AppStorage(UserDefaultsKeys.timerMins, store: .suite) var minute: Int = 5
+    @AppStorage(UserDefaultsKeys.timerSecs, store: .suite) var second: Int = 0
     
     private func startTimer() {
         let duration: TimeInterval = Double(60*60*hour + 60*minute + second)
