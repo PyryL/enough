@@ -21,6 +21,12 @@ struct SettingsView: View {
         UIApplication.shared.open(url)
     }
     
+    func openGithub() {
+        guard let url = URL(string: "https://github.com/PyryL/enough"),
+              UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
     func rateOnAppStore() {
         // TODO: app id links to EFiCa
         guard let url = URL(string: "https://itunes.apple.com/app/id1524798779?action=write-review"),
@@ -33,8 +39,11 @@ struct SettingsView: View {
             Form {
                 Section(header: Text("About")) {
                     creator
+                    Button(action: openGithub) {
+                        Label("Source code on GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
+                    }
                     Button(action: openWebsite) {
-                        Label("Visit website", systemImage: "globe")
+                        Label("Creator's website", systemImage: "globe")
                     }
                     Button(action: rateOnAppStore) {
                         Label("Rate on App Store", systemImage: "star")
