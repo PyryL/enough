@@ -51,6 +51,7 @@ struct SettingsView: View {
                         Label("Third-party licenses", systemImage: "doc")
                     }
                 }
+                .foregroundColor(.primary)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
