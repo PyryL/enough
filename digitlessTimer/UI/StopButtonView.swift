@@ -15,6 +15,8 @@ struct StopButtonView: View {
     @State private var pressTimer: AnyCancellable? = nil
     @State private var showLongPressGuide: Bool = false
 
+    @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor: Bool
+
     private func pressChanged(_ isPressed: Bool) {
         if isPressed {
             pressStart = .now
@@ -55,21 +57,30 @@ struct StopButtonView: View {
     }
 
     var body: some View {
-        Image(systemName: "pause.fill")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 120, height: 120)
-            .foregroundColor(.black.opacity(0.2))
-            .padding()
-            .onLongPressGesture(
-                minimumDuration: minimumDuration,
-                perform: manager.resetTimer,
-                onPressingChanged: pressChanged)
-            .scaleEffect(scale)
-            .animation(.linear(duration: 0.2), value: pressPercentage)
-            .overlay(LongPressGuide(manager: manager, isShown: $showLongPressGuide),
-                     alignment: .bottom)
-            .preventSleep()
+        VStack {
+            if differentiateWithoutColor {
+                Text(manager.state == .green ? "Enough!" : "Not enough")
+                    .font(.system(.title, design: .rounded, weight: .heavy))
+                    .padding(.horizontal)
+                    .background(Color.black.opacity(.leastNormalMagnitude))
+            }
+
+            Image(systemName: "pause.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 120, height: 120)
+                .padding()
+                .onLongPressGesture(
+                    minimumDuration: minimumDuration,
+                    perform: manager.resetTimer,
+                    onPressingChanged: pressChanged)
+                .scaleEffect(scale)
+                .animation(.linear(duration: 0.2), value: pressPercentage)
+
+            LongPressGuide(manager: manager, isShown: $showLongPressGuide)
+        }
+        .foregroundColor(.black.opacity(0.2))
+        .preventSleep()
     }
 }
 
@@ -80,10 +91,10 @@ fileprivate struct LongPressGuide: View {
 
     var body: some View {
         Text("Press and hold to cancel the timer")
-            .foregroundStyle(.white)
+            .foregroundColor(.black.opacity(0.7))
             .multilineTextAlignment(.center)
             .lineLimit(2)
-            .offset(y: 50)
+            .padding(.horizontal)
             .opacity(isShown && manager.state != .green ? 1.0 : 0.0)
             .animation(.easeInOut, value: isShown)
             .onChangePolyfill(value: isShown) {
