@@ -59,8 +59,6 @@ struct PickerComponent: View {
     }
 }
 
-struct SetTimerView_Previews: PreviewProvider {
-    static var previews: some View {
-        SetTimerView(manager: TimerManager())
-    }
+#Preview {
+    SetTimerView(manager: TimerManager())
 }

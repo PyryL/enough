@@ -91,8 +91,6 @@ struct ThirdPartyLicensesView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView(isVisible: .constant(true))
-    }
+#Preview {
+    SettingsView(isVisible: .constant(true))
 }

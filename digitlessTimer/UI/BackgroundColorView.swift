@@ -28,8 +28,6 @@ struct BackgroundColorView: View {
     }
 }
 
-struct BackgroundColorView_Previews: PreviewProvider {
-    static var previews: some View {
-        BackgroundColorView(manager: TimerManager())
-    }
+#Preview {
+    BackgroundColorView(manager: TimerManager())
 }

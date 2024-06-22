@@ -24,8 +24,6 @@ struct StopButtonView: View {
     }
 }
 
-struct StopButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        StopButtonView(manager: TimerManager())
-    }
+#Preview {
+    StopButtonView(manager: TimerManager())
 }
