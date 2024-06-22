@@ -12,7 +12,17 @@ struct SettingsView: View {
     
     var creator: Text {
         Text("Created by ") +
-        Text("Pyry Lahtinen").bold().foregroundColor(.accentColor)
+        Text("Pyry Lahtinen")
+            .fontWeight(.heavy)
+            .fontDesign(.rounded)
+            .foregroundColor(.accentColor)
+    }
+
+    var version: String {
+        guard let version = UIApplication.appVersion else {
+            return ""
+        }
+        return "Version \(version)"
     }
     
     func openWebsite() {
@@ -36,13 +46,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("About")) {
+                Section(header: Text("About"), footer: Text(version)) {
                     creator
                     Button(action: openGithub) {
                         Label("Source code on GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
                     }
                     Button(action: openWebsite) {
-                        Label("Creator's website", systemImage: "globe")
+                        Label("Developer's website", systemImage: "globe")
                     }
                     Button(action: rateOnAppStore) {
                         Label("Rate on App Store", systemImage: "star")
@@ -88,6 +98,13 @@ struct ThirdPartyLicensesView: View {
                 Label(url.host() ?? url.absoluteString, systemImage: "globe")
             }
         }
+    }
+}
+
+extension UIApplication {
+    /// The version of the app, e.g. `1.2.3`.
+    static var appVersion: String? {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
 }
 
