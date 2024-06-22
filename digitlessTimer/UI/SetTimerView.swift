@@ -24,8 +24,8 @@ struct SetTimerView: View {
                 .font(.system(.title, design: .rounded, weight: .semibold))
             HStack {
                 PickerComponent(title: "Hour", range: 0..<24, suffix: "h", selection: $hour)
-                PickerComponent(title: "Minute", range: 0..<59, suffix: "min", selection: $minute)
-                PickerComponent(title: "Second", range: 0..<59, suffix: "s", selection: $second)
+                PickerComponent(title: "Minute", range: 0..<60, suffix: "min", selection: $minute)
+                PickerComponent(title: "Second", range: 0..<60, suffix: "s", selection: $second)
             }
             Button(action: startTimer) {
                 Text("Start")
