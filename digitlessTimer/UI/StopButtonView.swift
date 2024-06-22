@@ -13,6 +13,7 @@ struct StopButtonView: View {
     @State private var pressStart: Date? = nil
     @State private var pressPercentage: Double = 0
     @State private var pressTimer: AnyCancellable? = nil
+    @State private var showLongPressGuide: Bool = false
 
     private func pressChanged(_ isPressed: Bool) {
         if isPressed {
@@ -27,6 +28,11 @@ struct StopButtonView: View {
                     pressPercentage = min(1.0, duration / minimumDuration)
                 }
         } else {
+            if let pressStart, -pressStart.timeIntervalSinceNow < minimumDuration {
+                showLongPressGuide = true
+            } else {
+                showLongPressGuide = false
+            }
             pressTimer?.cancel()
             pressTimer = nil
             pressStart = nil
@@ -60,8 +66,43 @@ struct StopButtonView: View {
                 perform: manager.resetTimer,
                 onPressingChanged: pressChanged)
             .scaleEffect(scale)
-            .animation(.bouncy, value: pressPercentage)
+            .animation(.linear(duration: 0.2), value: pressPercentage)
+            .overlay(LongPressGuide(manager: manager, isShown: $showLongPressGuide),
+                     alignment: .bottom)
             .preventSleep()
+    }
+}
+
+fileprivate struct LongPressGuide: View {
+    @ObservedObject var manager: TimerManager
+    @Binding var isShown: Bool
+    @State private var hideTimer: Timer? = nil
+
+    var body: some View {
+        Text("Press and hold to cancel the timer")
+            .foregroundStyle(.white)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .offset(y: 50)
+            .opacity(isShown && manager.state != .green ? 1.0 : 0.0)
+            .animation(.easeInOut, value: isShown)
+            .onChangePolyfill(value: isShown) {
+                guard isShown else { return }
+                hideTimer?.invalidate()
+                hideTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { _ in
+                    isShown = false
+                }
+            }
+    }
+}
+
+fileprivate extension View {
+    func onChangePolyfill<V:Equatable>(value: V, action: @escaping ()->()) -> some View {
+        if #available(iOS 18, *) {
+            return self.onChange(of: value, action)
+        } else {
+            return self.onChange(of: value, perform: { _ in action() })
+        }
     }
 }
 
