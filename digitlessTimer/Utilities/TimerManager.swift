@@ -59,6 +59,8 @@ class TimerManager: ObservableObject {
     }
     
     func resetTimer() {
+        targetTimer?.invalidate()
+        targetTimer = nil
         timerTargetDate = nil
         state = .notStarted
         UserDefaults.suite.removeObject(forKey: UserDefaultsKeys.targetDate)
