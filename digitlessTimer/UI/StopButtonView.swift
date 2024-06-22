@@ -19,8 +19,16 @@ struct StopButtonView: View {
                 .foregroundColor(.black.opacity(0.2))
                 .padding()
         }
-        .buttonStyle(.plain)
+        .buttonStyle(StopButtonStyle())
         .preventSleep()
+    }
+}
+
+fileprivate struct StopButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.1 : 1.0)
+            .animation(.bouncy, value: configuration.isPressed)
     }
 }
 
