@@ -51,12 +51,19 @@ struct SettingsView: View {
                     Button(action: openGithub) {
                         Label("Source code on GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
                     }
+                    .accessibilityAddTraits(.isLink)
+                    .accessibilityRemoveTraits(.isButton)
+
                     Button(action: openWebsite) {
                         Label("Developer's website", systemImage: "globe")
                     }
+                    .accessibilityAddTraits(.isLink)
+                    .accessibilityRemoveTraits(.isButton)
+
                     Button(action: rateOnAppStore) {
                         Label("Rate on App Store", systemImage: "star")
                     }
+
                     NavigationLink(destination: ThirdPartyLicensesView()) {
                         Label("Third-party licenses", systemImage: "doc")
                     }
@@ -97,6 +104,8 @@ struct ThirdPartyLicensesView: View {
             Button(action: { openPage(url) }) {
                 Label(url.host() ?? url.absoluteString, systemImage: "globe")
             }
+            .accessibilityAddTraits(.isLink)
+            .accessibilityRemoveTraits(.isButton)
         }
     }
 }

@@ -16,6 +16,8 @@ struct StopButtonView: View {
     @State private var showLongPressGuide: Bool = false
 
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor: Bool
+    @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled: Bool
+    @AccessibilityFocusState var textLabelHasAccessibilityFocus: Bool
 
     private func pressChanged(_ isPressed: Bool) {
         if isPressed {
@@ -58,11 +60,13 @@ struct StopButtonView: View {
 
     var body: some View {
         VStack {
-            if differentiateWithoutColor {
+            if differentiateWithoutColor || voiceOverEnabled {
                 Text(manager.state == .green ? "Enough!" : "Not enough")
                     .font(.system(.title, design: .rounded, weight: .heavy))
                     .padding(.horizontal)
                     .background(Color.black.opacity(.leastNormalMagnitude))
+                    .accessibilityFocused($textLabelHasAccessibilityFocus)
+                    .onAppear { textLabelHasAccessibilityFocus = true }
             }
 
             Image(systemName: "pause.fill")
@@ -76,6 +80,10 @@ struct StopButtonView: View {
                     onPressingChanged: pressChanged)
                 .scaleEffect(scale)
                 .animation(.linear(duration: 0.2), value: pressPercentage)
+                .accessibilityLabel(manager.state == .green ? "Stop timer" : "Cancel timer")
+                .accessibilityAction { manager.resetTimer() }
+                .accessibilityAddTraits(.isButton)
+                .accessibilityRemoveTraits(.isImage)
 
             LongPressGuide(manager: manager, isShown: $showLongPressGuide)
         }
@@ -104,6 +112,7 @@ fileprivate struct LongPressGuide: View {
                     isShown = false
                 }
             }
+            .accessibilityHidden(true)
     }
 }
 
