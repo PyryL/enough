@@ -60,13 +60,18 @@ struct StopButtonView: View {
 
     var body: some View {
         VStack {
-            if differentiateWithoutColor || voiceOverEnabled {
-                Text(manager.state == .green ? "Enough!" : "Not enough")
-                    .font(.system(.title, design: .rounded, weight: .heavy))
-                    .padding(.horizontal)
-                    .background(Color.black.opacity(.leastNormalMagnitude))
-                    .accessibilityFocused($textLabelHasAccessibilityFocus)
-                    .onAppear { textLabelHasAccessibilityFocus = true }
+            ZStack(alignment: .bottom) {
+                Spacer()
+                    .frame(maxWidth: .infinity)
+
+                if differentiateWithoutColor || voiceOverEnabled {
+                    Text(manager.state == .green ? "Enough!" : "Not enough")
+                        .font(.system(.title, design: .rounded, weight: .heavy))
+                        .padding(.horizontal)
+                        .background(Color.black.opacity(.leastNormalMagnitude))
+                        .accessibilityFocused($textLabelHasAccessibilityFocus)
+                        .onAppear { textLabelHasAccessibilityFocus = true }
+                }
             }
 
             Image(systemName: "pause.fill")
@@ -85,7 +90,11 @@ struct StopButtonView: View {
                 .accessibilityAddTraits(.isButton)
                 .accessibilityRemoveTraits(.isImage)
 
-            LongPressGuide(manager: manager, isShown: $showLongPressGuide)
+            ZStack(alignment: .top) {
+                Spacer()
+                    .frame(maxWidth: .infinity)
+                LongPressGuide(manager: manager, isShown: $showLongPressGuide)
+            }
         }
         .foregroundColor(.black.opacity(0.2))
         .preventSleep()
