@@ -27,7 +27,7 @@ struct SetTimerView: View {
                 .accessibilityFocused($headerHasAccessibilityFocus)
                 .onAppear { headerHasAccessibilityFocus = true }
                 .accessibilityAddTraits(.isHeader)
-            HStack {
+            Stack {
                 PickerComponent(
                     title: "Hour",
                     range: 0..<24,
@@ -60,6 +60,23 @@ struct SetTimerView: View {
             .buttonStyle(.plain)
         }
     }
+
+    private struct Stack<V:View>: View {
+        @ViewBuilder var content: () -> (V)
+        @Environment(\.dynamicTypeSize) var dynamicTypeSize
+
+        var body: some View {
+            if dynamicTypeSize > .xxxLarge {
+                VStack {
+                    content()
+                }
+            } else {
+                HStack(spacing: 0) {
+                    content()
+                }
+            }
+        }
+    }
 }
 
 struct PickerComponent: View {
@@ -68,17 +85,33 @@ struct PickerComponent: View {
     let suffix: String
     let accessibilitySuffix: String
     @Binding var selection: Int
-    
+
     var body: some View {
         Picker(title, selection: $selection) {
             ForEach(range, id: \.self) { i in
                 Text("\(i) \(suffix)")
                     .tag(i)
+                    .font(.body)
                     .accessibilityLabel("\(i) \(accessibilitySuffix)")
             }
         }
-        .pickerStyle(.wheel)
-        .frame(height: 100)
+        .modifier(DynamicSizingModifiers())
+    }
+
+    private struct DynamicSizingModifiers: ViewModifier {
+        @Environment(\.dynamicTypeSize) var dynamicTypeSize
+
+        func body(content: Content) -> some View {
+            if dynamicTypeSize > .xxxLarge {
+                content
+                    .pickerStyle(.menu)
+            } else {
+                content
+                    .pickerStyle(.wheel)
+                    .frame(height: 100)
+                    .monospacedDigit()
+            }
+        }
     }
 }
 
