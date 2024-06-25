@@ -64,7 +64,11 @@ struct SetTimerView: View {
                     .padding(.vertical, 10)
                     .frame(maxWidth: .infinity)
                     .background(Color.accentColor)
+                    #if os(iOS)
                     .cornerRadius(12)
+                    #elseif os(watchOS)
+                    .clipShape(Capsule())
+                    #endif
                     .padding()
             }
             .buttonStyle(.plain)
@@ -81,9 +85,15 @@ struct SetTimerView: View {
                     content()
                 }
             } else {
+                #if os(iOS)
                 HStack(spacing: 0) {
                     content()
                 }
+                #elseif os(watchOS)
+                HStack {
+                    content()
+                }
+                #endif
             }
         }
     }
@@ -96,19 +106,26 @@ struct PickerComponent: View {
     let accessibilitySuffix: String
     @Binding var selection: Int
 
+    private func label(_ i: Int) -> String {
+        #if os(iOS)
+        return "\(i) \(suffix)"
+        #elseif os(watchOS)
+        return "\(i)"
+        #endif
+    }
+
     var body: some View {
         Picker(title, selection: $selection) {
             ForEach(range, id: \.self) { i in
-                Text("\(i) \(suffix)")
+                Text(label(i))
                     .tag(i)
+                    #if os(iOS)
                     .font(.body)
+                    #endif
                     .accessibilityLabel("\(i) \(accessibilitySuffix)")
             }
         }
         .modifier(DynamicSizingModifiers())
-        #if os(watchOS)
-        .labelsHidden()
-        #endif
     }
 
     private struct DynamicSizingModifiers: ViewModifier {
