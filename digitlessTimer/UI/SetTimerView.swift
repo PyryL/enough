@@ -34,7 +34,7 @@ struct SetTimerView: View {
                     .accessibilityAddTraits(.isHeader)
                 #if os(watchOS)
                 Spacer()
-                ContentView().settingsButton
+                SettingsButton()
                 #endif
             }
             Stack {
