@@ -21,8 +21,10 @@ struct ContentView: View {
                 StopButtonView(manager: manager)
             }
         }
+        #if os(iOS)
         .statusBarHidden()
-        .overlay(settingsButton, alignment: .bottomTrailing)
+        #endif
+//        .overlay(settingsButton, alignment: .bottomTrailing)
         .sheet(isPresented: $settingsVisible) {
             SettingsView(isVisible: $settingsVisible)
         }

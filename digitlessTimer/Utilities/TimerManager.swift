@@ -10,10 +10,16 @@ import SwiftUI
 class TimerManager: ObservableObject {
     init() {
         loadVariablesFromStorage()
+
+        #if os(iOS)
+        let notificationName = UIApplication.didBecomeActiveNotification
+        #elseif os(watchOS)
+        let notificationName = WKApplication.didBecomeActiveNotification
+        #endif
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(appBecameActive),
-            name: UIApplication.didBecomeActiveNotification,
+            name: notificationName,
             object: nil)
     }
     

@@ -23,7 +23,11 @@ struct SetTimerView: View {
     var body: some View {
         VStack {
             Text("Set timer")
+                #if os(iOS)
                 .font(.system(.title, design: .rounded, weight: .semibold))
+                #elseif os(watchOS)
+                .font(.system(.headline, design: .rounded, weight: .semibold))
+                #endif
                 .accessibilityFocused($headerHasAccessibilityFocus)
                 .onAppear { headerHasAccessibilityFocus = true }
                 .accessibilityAddTraits(.isHeader)
@@ -96,6 +100,9 @@ struct PickerComponent: View {
             }
         }
         .modifier(DynamicSizingModifiers())
+        #if os(watchOS)
+        .labelsHidden()
+        #endif
     }
 
     private struct DynamicSizingModifiers: ViewModifier {
@@ -104,7 +111,11 @@ struct PickerComponent: View {
         func body(content: Content) -> some View {
             if dynamicTypeSize > .xxxLarge {
                 content
+                #if os(iOS)
                     .pickerStyle(.menu)
+                #elseif os(watchOS)
+                    .pickerStyle(.inline)
+                #endif
             } else {
                 content
                     .pickerStyle(.wheel)

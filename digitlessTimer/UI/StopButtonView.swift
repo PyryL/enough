@@ -22,7 +22,11 @@ struct StopButtonView: View {
     private func pressChanged(_ isPressed: Bool) {
         if isPressed {
             pressStart = .now
+            #if os(iOS)
             let secPerFrame = 1.0 / Double(UIScreen.main.maximumFramesPerSecond)
+            #elseif os(watchOS)
+            let secPerFrame = 1.0 / 30.0
+            #endif
             pressTimer = Timer
                 .publish(every: secPerFrame, on: .main, in: .default)
                 .autoconnect()
@@ -77,7 +81,11 @@ struct StopButtonView: View {
             Image(systemName: "pause.fill")
                 .resizable()
                 .scaledToFit()
+                #if os(iOS)
                 .frame(width: 120, height: 120)
+                #elseif os(watchOS)
+                .frame(width: 80, height: 80)
+                #endif
                 .padding()
                 .onLongPressGesture(
                     minimumDuration: minimumDuration,
@@ -108,6 +116,7 @@ fileprivate struct LongPressGuide: View {
 
     var body: some View {
         Text("Press and hold to cancel the timer")
+            .font(.body)
             .foregroundColor(.black.opacity(0.7))
             .multilineTextAlignment(.center)
             .lineLimit(2)

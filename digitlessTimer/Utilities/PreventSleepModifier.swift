@@ -11,10 +11,14 @@ struct PreventSleepModifier: ViewModifier {
     func body(content: Content) -> some View {
         return content
             .onAppear {
+                #if os(iOS)
                 UIApplication.shared.isIdleTimerDisabled = true
+                #endif
             }
             .onDisappear {
+                #if os(iOS)
                 UIApplication.shared.isIdleTimerDisabled = false
+                #endif
             }
     }
 }

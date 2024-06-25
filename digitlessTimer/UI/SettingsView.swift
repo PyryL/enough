@@ -19,7 +19,7 @@ struct SettingsView: View {
     }
 
     var version: String {
-        guard let version = UIApplication.appVersion else {
+        guard let version = Application.appVersion else {
             return ""
         }
         return "Version \(version)"
@@ -27,20 +27,20 @@ struct SettingsView: View {
     
     func openWebsite() {
         guard let url = URL(string: "https://pyry.info"),
-              UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
+              Application.canOpenUrl(url) else { return }
+        Application.openUrl(url)
     }
     
     func openGithub() {
         guard let url = URL(string: "https://github.com/PyryL/enough"),
-              UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
+              Application.canOpenUrl(url) else { return }
+        Application.openUrl(url)
     }
     
     func rateOnAppStore() {
         guard let url = URL(string: "https://itunes.apple.com/app/id6466716992?action=write-review"),
-              UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
+              Application.canOpenUrl(url) else { return }
+        Application.openUrl(url)
     }
     
     var body: some View {
@@ -84,8 +84,8 @@ struct SettingsView: View {
 
 struct ThirdPartyLicensesView: View {
     func openPage(_ url: URL) {
-        guard UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
+        guard Application.canOpenUrl(url) else { return }
+        Application.openUrl(url)
     }
     
     var body: some View {
@@ -110,10 +110,25 @@ struct ThirdPartyLicensesView: View {
     }
 }
 
-extension UIApplication {
-    /// The version of the app, e.g. `1.2.3`.
-    static var appVersion: String? {
+struct Application {
+    public static var appVersion: String? {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+
+    public static func canOpenUrl(_ url: URL) -> Bool {
+        #if os(iOS)
+        UIApplication.shared.canOpenURL(url)
+        #elseif os(watchOS)
+        return false
+        #endif
+    }
+
+    public static func openUrl(_ url: URL) {
+        #if os(iOS)
+        UIApplication.shared.open(url)
+        #elseif os(watchOS)
+        WKApplication.shared().openSystemURL(url)
+        #endif
     }
 }
 
