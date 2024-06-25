@@ -22,15 +22,21 @@ struct SetTimerView: View {
     
     var body: some View {
         VStack {
-            Text("Set timer")
-                #if os(iOS)
-                .font(.system(.title, design: .rounded, weight: .semibold))
-                #elseif os(watchOS)
-                .font(.system(.headline, design: .rounded, weight: .semibold))
+            HStack {
+                Text("Set timer")
+                    #if os(iOS)
+                    .font(.system(.title, design: .rounded, weight: .semibold))
+                    #elseif os(watchOS)
+                    .font(.system(.headline, design: .rounded, weight: .semibold))
+                    #endif
+                    .accessibilityFocused($headerHasAccessibilityFocus)
+                    .onAppear { headerHasAccessibilityFocus = true }
+                    .accessibilityAddTraits(.isHeader)
+                #if os(watchOS)
+                Spacer()
+                ContentView().settingsButton
                 #endif
-                .accessibilityFocused($headerHasAccessibilityFocus)
-                .onAppear { headerHasAccessibilityFocus = true }
-                .accessibilityAddTraits(.isHeader)
+            }
             Stack {
                 PickerComponent(
                     title: "Hour",

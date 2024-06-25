@@ -23,8 +23,8 @@ struct ContentView: View {
         }
         #if os(iOS)
         .statusBarHidden()
+        .overlay(settingsButton, alignment: .bottomTrailing)
         #endif
-//        .overlay(settingsButton, alignment: .bottomTrailing)
         .sheet(isPresented: $settingsVisible) {
             SettingsView(isVisible: $settingsVisible)
         }
@@ -37,6 +37,7 @@ struct ContentView: View {
                 .labelStyle(.iconOnly)
                 .padding()
         }
+        .buttonStyle(.plain)
     }
 }
 
