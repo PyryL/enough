@@ -7,6 +7,7 @@
 
 import Foundation
 import WatchConnectivity
+import os
 
 class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelegate {
     override init() {
@@ -25,7 +26,7 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
 
         // check that sending is available
         guard session.activationState == .activated else {
-            print("could not send user info: \(session.activationState)")
+            Logger.watch.log("ios could not send user info: \(self.session.activationState.rawValue)")
             return
         }
 
@@ -38,21 +39,21 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
 
 
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        print("ios received info \(userInfo)")
+        Logger.watch.log("ios received user info: \(userInfo)")
         if let action = userInfo["action"] as? WatchConnectionAction {
             delegate?.watchConnection(didReceive: action)
         }
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: (any Error)?) {
-        print("session activated: \(activationState == .activated) \(error as Any)")
+        Logger.watch.log("ios session activated: \(activationState.rawValue) \(error)")
     }
 
     func sessionDidBecomeInactive(_ session: WCSession) {
-        print("session inactivated")
+        Logger.watch.log("ios session inactivated")
     }
 
     func sessionDidDeactivate(_ session: WCSession) {
-        print("session deactivated")
+        Logger.watch.log("ios session deactivated")
     }
 }
