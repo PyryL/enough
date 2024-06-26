@@ -14,6 +14,7 @@ class PhoneConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
         super.init()
         session.delegate = self
         session.activate()
+        Logger.watch.log("watch init")
     }
 
     private let session = WCSession.default
@@ -35,6 +36,7 @@ class PhoneConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
             "action": action
         ]
         session.transferUserInfo(userInfo)
+        Logger.watch.log("watch sent user info: \(userInfo)")
     }
 
 
@@ -43,6 +45,18 @@ class PhoneConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
         if let action = userInfo["action"] as? WatchConnectionAction {
             delegate?.watchConnection(didReceive: action)
         }
+    }
+
+    func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: (any Error)?) {
+        Logger.watch.log("watch user info transfer finished: \(error)")
+    }
+
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        Logger.watch.log("watch reachability: \(session.isReachable)")
+    }
+
+    func sessionCompanionAppInstalledDidChange(_ session: WCSession) {
+        Logger.watch.log("watch companion installation changed: \(session.isCompanionAppInstalled)")
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: (any Error)?) {

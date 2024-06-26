@@ -14,6 +14,7 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
         super.init()
         session.delegate = self
         session.activate()
+        Logger.watch.log("ios init")
     }
 
     private let session = WCSession.default
@@ -35,6 +36,7 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
             "action": action
         ]
         session.transferUserInfo(userInfo)
+        Logger.watch.log("ios sent user info: \(userInfo)")
     }
 
 
@@ -45,8 +47,20 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
         }
     }
 
+    func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: (any Error)?) {
+        Logger.watch.log("ios user info transfer finished: \(error)")
+    }
+
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        Logger.watch.log("ios reachability: \(session.isReachable)")
+    }
+
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        Logger.watch.log("ios watch state: \(session.isPaired) \(session.isWatchAppInstalled)")
+    }
+
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: (any Error)?) {
-        Logger.watch.log("ios session activated: \(activationState.rawValue) \(error)")
+        Logger.watch.log("ios session activated: \(activationState.rawValue) \(error) and \(session.isPaired) \(session.isWatchAppInstalled) \(session.isReachable)")
     }
 
     func sessionDidBecomeInactive(_ session: WCSession) {
