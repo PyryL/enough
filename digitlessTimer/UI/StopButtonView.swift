@@ -89,12 +89,12 @@ struct StopButtonView: View {
                 .padding()
                 .onLongPressGesture(
                     minimumDuration: minimumDuration,
-                    perform: manager.resetTimer,
+                    perform: { manager.resetTimer(isFromOtherDevice: false) },
                     onPressingChanged: pressChanged)
                 .scaleEffect(scale)
                 .animation(.linear(duration: 0.2), value: pressPercentage)
                 .accessibilityLabel(manager.state == .green ? "Stop timer" : "Cancel timer")
-                .accessibilityAction { manager.resetTimer() }
+                .accessibilityAction { manager.resetTimer(isFromOtherDevice: false) }
                 .accessibilityAddTraits(.isButton)
                 .accessibilityRemoveTraits(.isImage)
 

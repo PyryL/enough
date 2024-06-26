@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441DDF172C2C287B00A9656B /* WatchConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF152C2C287B00A9656B /* WatchConnectionManager.swift */; };
+		441DDF192C2C29AC00A9656B /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF182C2C29AC00A9656B /* WatchConnection.swift */; };
+		441DDF1A2C2C29AC00A9656B /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF182C2C29AC00A9656B /* WatchConnection.swift */; };
+		441DDF1C2C2C2A4500A9656B /* PhoneConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF1B2C2C2A4500A9656B /* PhoneConnectionManager.swift */; };
 		44379F4C2AB57D65008E81BF /* digitlessTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F4B2AB57D65008E81BF /* digitlessTimerApp.swift */; };
 		44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F4D2AB57D65008E81BF /* ContentView.swift */; };
 		44379F502AB57D66008E81BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44379F4F2AB57D66008E81BF /* Assets.xcassets */; };
@@ -57,6 +61,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		441DDF152C2C287B00A9656B /* WatchConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectionManager.swift; sourceTree = "<group>"; };
+		441DDF182C2C29AC00A9656B /* WatchConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnection.swift; sourceTree = "<group>"; };
+		441DDF1B2C2C2A4500A9656B /* PhoneConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectionManager.swift; sourceTree = "<group>"; };
 		44379F482AB57D65008E81BF /* digitlessTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digitlessTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44379F4B2AB57D65008E81BF /* digitlessTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = digitlessTimerApp.swift; sourceTree = "<group>"; };
 		44379F4D2AB57D65008E81BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -149,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				44379F592AB57D99008E81BF /* TimerManager.swift */,
+				441DDF152C2C287B00A9656B /* WatchConnectionManager.swift */,
+				441DDF182C2C29AC00A9656B /* WatchConnection.swift */,
 				44379F682AB5CDF0008E81BF /* UserDefaults.swift */,
 				44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */,
 			);
@@ -159,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				4493FCBF2C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift */,
+				441DDF1B2C2C2A4500A9656B /* PhoneConnectionManager.swift */,
 				4493FCC32C29B9CC00E4F2E6 /* Assets.xcassets */,
 				4493FCC52C29B9CC00E4F2E6 /* Preview Content */,
 			);
@@ -276,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44379F5A2AB57D99008E81BF /* TimerManager.swift in Sources */,
+				441DDF172C2C287B00A9656B /* WatchConnectionManager.swift in Sources */,
 				44379F652AB5C764008E81BF /* SettingsView.swift in Sources */,
 				44379F5C2AB57F41008E81BF /* SetTimerView.swift in Sources */,
 				44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */,
@@ -284,6 +295,7 @@
 				44379F612AB5B690008E81BF /* BackgroundColorView.swift in Sources */,
 				44379F5E2AB5B306008E81BF /* StopButtonView.swift in Sources */,
 				44379F632AB5B7EA008E81BF /* PreventSleepModifier.swift in Sources */,
+				441DDF1A2C2C29AC00A9656B /* WatchConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,11 +307,13 @@
 				446F5EBC2C29CB0E0040CAC1 /* PreventSleepModifier.swift in Sources */,
 				446F5EBA2C29CB070040CAC1 /* TimerManager.swift in Sources */,
 				446F5EB72C29CAF60040CAC1 /* SetTimerView.swift in Sources */,
+				441DDF1C2C2C2A4500A9656B /* PhoneConnectionManager.swift in Sources */,
 				446F5EB82C29CAFA0040CAC1 /* StopButtonView.swift in Sources */,
 				446F5EBB2C29CB0A0040CAC1 /* UserDefaults.swift in Sources */,
 				4493FCC02C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift in Sources */,
 				446F5EB62C29CAF20040CAC1 /* BackgroundColorView.swift in Sources */,
 				446F5EB52C29CAEE0040CAC1 /* ContentView.swift in Sources */,
+				441DDF192C2C29AC00A9656B /* WatchConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
