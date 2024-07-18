@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+#if os(iOS)
+import os
+#endif
 
 class TimerManager: ObservableObject, WatchConnectionDelegate {
     init() {
@@ -66,6 +69,9 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
         if !isFromOtherDevice {
             watchConnection.sendAction(.timerStarted(endDate: date))
         }
+        #if os(iOS)
+        Logger.watch.log("ios finished handling action \(date); \(isAlreadyPassed) \(isFromOtherDevice)")
+        #endif
     }
 
     private func setTimerForTarget() {
@@ -78,10 +84,16 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
         guard secondsToGo > 0 else {
             return
         }
+        #if os(iOS)
+        Logger.watch.log("ios setting timer \(secondsToGo)")
+        #endif
         targetTimer = Timer.scheduledTimer(withTimeInterval: secondsToGo, repeats: false) { _ in
             self.targetTimer?.invalidate()
             self.targetTimer = nil
             self.state = .green
+            #if os(iOS)
+            Logger.watch.log("ios turning green")
+            #endif
         }
     }
     
@@ -102,6 +114,9 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
     }
 
     func watchConnection(didReceive action: WatchConnectionAction) {
+        #if os(iOS)
+        Logger.watch.log("ios handling action \(action)")
+        #endif
         switch action {
         case .timerStarted(let endDate):
             startTimer(date: endDate, isFromOtherDevice: true)

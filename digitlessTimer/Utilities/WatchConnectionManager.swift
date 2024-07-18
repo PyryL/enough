@@ -51,6 +51,7 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
         Logger.watch.log("ios received user info: \(userInfo)")
         if let actionData = userInfo["action"] as? Data,
            let action = try? JSONDecoder().decode(WatchConnectionAction.self, from: actionData) {
+            Logger.watch.log("ios received action: \(action)")
             delegate?.watchConnection(didReceive: action)
         }
     }

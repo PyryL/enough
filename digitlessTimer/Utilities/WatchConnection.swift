@@ -21,3 +21,14 @@ enum WatchConnectionAction: Codable {
     case timerStarted(endDate: Date)
     case timerStopped
 }
+
+extension WatchConnectionAction: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .timerStarted(let endDate):
+            "WatchConnectionAction.timerStarted(\(endDate))"
+        case .timerStopped:
+            "WatchConnectionAction.timerStopped"
+        }
+    }
+}
