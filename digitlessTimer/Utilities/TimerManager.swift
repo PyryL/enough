@@ -70,13 +70,16 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
             watchConnection.sendAction(.timerStarted(endDate: date))
         }
         #if os(iOS)
-        Logger.watch.log("ios finished handling action \(date); \(isAlreadyPassed) \(isFromOtherDevice)")
+        Logger.watch.log("ios finished handling action \(date, privacy: .public); \(isAlreadyPassed) \(isFromOtherDevice)")
         #endif
     }
 
     private func setTimerForTarget() {
         targetTimer?.invalidate()
         targetTimer = nil
+        #if os(iOS)
+        Logger.watch.log("ios invalidating timer; \(self.timerTargetDate?.timeIntervalSinceNow ?? -100)")
+        #endif
         guard let timerTargetDate else {
             return
         }
@@ -115,7 +118,7 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
 
     func watchConnection(didReceive action: WatchConnectionAction) {
         #if os(iOS)
-        Logger.watch.log("ios handling action \(action)")
+        Logger.watch.log("ios handling action \(action, privacy: .public)")
         #endif
         switch action {
         case .timerStarted(let endDate):

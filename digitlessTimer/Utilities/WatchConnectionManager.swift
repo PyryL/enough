@@ -43,15 +43,15 @@ class WatchConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
             "action": actionData
         ]
         session.transferUserInfo(userInfo)
-        Logger.watch.log("ios sent action: \(actionData)")
+        Logger.watch.log("ios sent action: \(actionData, privacy: .public)")
     }
 
 
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        Logger.watch.log("ios received user info: \(userInfo)")
+        Logger.watch.log("ios received user info: \(userInfo, privacy: .public)")
         if let actionData = userInfo["action"] as? Data,
            let action = try? JSONDecoder().decode(WatchConnectionAction.self, from: actionData) {
-            Logger.watch.log("ios received action: \(action)")
+            Logger.watch.log("ios received action: \(action, privacy: .public)")
             delegate?.watchConnection(didReceive: action)
         }
     }
