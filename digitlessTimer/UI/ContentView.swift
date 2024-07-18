@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var manager = TimerManager()
-    @State var settingsVisible: Bool = false
     
     var body: some View {
         ZStack {
@@ -21,19 +20,26 @@ struct ContentView: View {
                 StopButtonView(manager: manager)
             }
         }
+        #if os(iOS)
         .statusBarHidden()
-        .overlay(settingsButton, alignment: .bottomTrailing)
-        .sheet(isPresented: $settingsVisible) {
-            SettingsView(isVisible: $settingsVisible)
-        }
+        .overlay(SettingsButton(), alignment: .bottomTrailing)
+        #endif
     }
-    
-    var settingsButton: some View {
+}
+
+struct SettingsButton: View {
+    @State var settingsVisible: Bool = false
+
+    var body: some View {
         Button(action: { settingsVisible.toggle() }) {
             Label("Settings", systemImage: "info.circle")
                 .font(.headline)
                 .labelStyle(.iconOnly)
                 .padding()
+        }
+        .buttonStyle(.plain)
+        .sheet(isPresented: $settingsVisible) {
+            SettingsView(isVisible: $settingsVisible)
         }
     }
 }

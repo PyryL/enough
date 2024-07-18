@@ -19,48 +19,28 @@ struct SettingsView: View {
     }
 
     var version: String {
-        guard let version = UIApplication.appVersion else {
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
             return ""
         }
         return "Version \(version)"
     }
-    
-    func openWebsite() {
-        guard let url = URL(string: "https://pyry.info"),
-              UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
-    }
-    
-    func openGithub() {
-        guard let url = URL(string: "https://github.com/PyryL/enough"),
-              UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
-    }
-    
-    func rateOnAppStore() {
-        guard let url = URL(string: "https://itunes.apple.com/app/id6466716992?action=write-review"),
-              UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
-    }
-    
+
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("About"), footer: Text(version)) {
                     creator
-                    Button(action: openGithub) {
-                        Label("Source code on GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
-                    }
-                    .accessibilityAddTraits(.isLink)
-                    .accessibilityRemoveTraits(.isButton)
 
-                    Button(action: openWebsite) {
+                    Link(destination: URL(string: "https://github.com/PyryL/enough")!) {
+                        Label("Source code on GitHub",
+                              systemImage: "chevron.left.forwardslash.chevron.right")
+                    }
+
+                    Link(destination: URL(string: "https://pyry.info")!) {
                         Label("Developer's website", systemImage: "globe")
                     }
-                    .accessibilityAddTraits(.isLink)
-                    .accessibilityRemoveTraits(.isButton)
 
-                    Button(action: rateOnAppStore) {
+                    Link(destination: URL(string: "https://itunes.apple.com/app/id6466716992?action=write-review")!) {
                         Label("Rate on App Store", systemImage: "star")
                     }
 
@@ -71,6 +51,7 @@ struct SettingsView: View {
                 .foregroundColor(.primary)
             }
             .navigationBarTitleDisplayMode(.inline)
+            #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { isVisible = false }) {
@@ -78,16 +59,12 @@ struct SettingsView: View {
                     }
                 }
             }
+            #endif
         }
     }
 }
 
 struct ThirdPartyLicensesView: View {
-    func openPage(_ url: URL) {
-        guard UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url)
-    }
-    
     var body: some View {
         Form {
             licenseItem(title: "Play symbol in the app icon",
@@ -101,19 +78,10 @@ struct ThirdPartyLicensesView: View {
         Section {
             Label(title, systemImage: "photo")
             Label(license, systemImage: "doc")
-            Button(action: { openPage(url) }) {
+            Link(destination: url) {
                 Label(url.host() ?? url.absoluteString, systemImage: "globe")
             }
-            .accessibilityAddTraits(.isLink)
-            .accessibilityRemoveTraits(.isButton)
         }
-    }
-}
-
-extension UIApplication {
-    /// The version of the app, e.g. `1.2.3`.
-    static var appVersion: String? {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
 }
 

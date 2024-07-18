@@ -17,7 +17,11 @@ struct BackgroundColorView: View {
         case .red:
             return Color.red
         case .notStarted:
+            #if os(iOS)
             return Color(uiColor: .systemBackground)
+            #elseif os(watchOS)
+            return Color.clear
+            #endif
         }
     }
     

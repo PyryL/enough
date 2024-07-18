@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441DDF172C2C287B00A9656B /* WatchConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF152C2C287B00A9656B /* WatchConnectionManager.swift */; };
+		441DDF192C2C29AC00A9656B /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF182C2C29AC00A9656B /* WatchConnection.swift */; };
+		441DDF1A2C2C29AC00A9656B /* WatchConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF182C2C29AC00A9656B /* WatchConnection.swift */; };
+		441DDF1C2C2C2A4500A9656B /* PhoneConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441DDF1B2C2C2A4500A9656B /* PhoneConnectionManager.swift */; };
 		44379F4C2AB57D65008E81BF /* digitlessTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F4B2AB57D65008E81BF /* digitlessTimerApp.swift */; };
 		44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F4D2AB57D65008E81BF /* ContentView.swift */; };
 		44379F502AB57D66008E81BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44379F4F2AB57D66008E81BF /* Assets.xcassets */; };
@@ -18,9 +22,50 @@
 		44379F632AB5B7EA008E81BF /* PreventSleepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */; };
 		44379F652AB5C764008E81BF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F642AB5C764008E81BF /* SettingsView.swift */; };
 		44379F692AB5CDF0008E81BF /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F682AB5CDF0008E81BF /* UserDefaults.swift */; };
+		444AC1242C2C5B360069619A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AC1232C2C5B360069619A /* Logger.swift */; };
+		444AC1252C2C5B360069619A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AC1232C2C5B360069619A /* Logger.swift */; };
+		446F5EB52C29CAEE0040CAC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F4D2AB57D65008E81BF /* ContentView.swift */; };
+		446F5EB62C29CAF20040CAC1 /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F602AB5B690008E81BF /* BackgroundColorView.swift */; };
+		446F5EB72C29CAF60040CAC1 /* SetTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F5B2AB57F41008E81BF /* SetTimerView.swift */; };
+		446F5EB82C29CAFA0040CAC1 /* StopButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F5D2AB5B306008E81BF /* StopButtonView.swift */; };
+		446F5EB92C29CAFE0040CAC1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F642AB5C764008E81BF /* SettingsView.swift */; };
+		446F5EBA2C29CB070040CAC1 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F592AB57D99008E81BF /* TimerManager.swift */; };
+		446F5EBB2C29CB0A0040CAC1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F682AB5CDF0008E81BF /* UserDefaults.swift */; };
+		446F5EBC2C29CB0E0040CAC1 /* PreventSleepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */; };
+		4493FCC02C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FCBF2C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift */; };
+		4493FCC42C29B9CC00E4F2E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4493FCC32C29B9CC00E4F2E6 /* Assets.xcassets */; };
+		4493FCC72C29B9CC00E4F2E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4493FCC62C29B9CC00E4F2E6 /* Preview Assets.xcassets */; };
+		4493FCCA2C29B9CC00E4F2E6 /* digitlessTimerWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4493FCC82C29B9CC00E4F2E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44379F402AB57D65008E81BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4493FCBC2C29B9CA00E4F2E6;
+			remoteInfo = "digitlessTimerWatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4493FCCB2C29B9CC00E4F2E6 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4493FCCA2C29B9CC00E4F2E6 /* digitlessTimerWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		441DDF152C2C287B00A9656B /* WatchConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectionManager.swift; sourceTree = "<group>"; };
+		441DDF182C2C29AC00A9656B /* WatchConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnection.swift; sourceTree = "<group>"; };
+		441DDF1B2C2C2A4500A9656B /* PhoneConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectionManager.swift; sourceTree = "<group>"; };
 		44379F482AB57D65008E81BF /* digitlessTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digitlessTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44379F4B2AB57D65008E81BF /* digitlessTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = digitlessTimerApp.swift; sourceTree = "<group>"; };
 		44379F4D2AB57D65008E81BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -34,10 +79,22 @@
 		44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventSleepModifier.swift; sourceTree = "<group>"; };
 		44379F642AB5C764008E81BF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		44379F682AB5CDF0008E81BF /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		444AC1232C2C5B360069619A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = digitlessTimerWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4493FCBF2C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = digitlessTimerWatchApp.swift; sourceTree = "<group>"; };
+		4493FCC32C29B9CC00E4F2E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4493FCC62C29B9CC00E4F2E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		44379F452AB57D65008E81BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4493FCBA2C29B9CA00E4F2E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				44379F4A2AB57D65008E81BF /* digitlessTimer */,
+				4493FCBE2C29B9CA00E4F2E6 /* digitlessTimerWatch Watch App */,
 				44379F492AB57D65008E81BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				44379F482AB57D65008E81BF /* digitlessTimer.app */,
+				4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,10 +159,32 @@
 			isa = PBXGroup;
 			children = (
 				44379F592AB57D99008E81BF /* TimerManager.swift */,
+				441DDF152C2C287B00A9656B /* WatchConnectionManager.swift */,
+				441DDF182C2C29AC00A9656B /* WatchConnection.swift */,
 				44379F682AB5CDF0008E81BF /* UserDefaults.swift */,
 				44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */,
+				444AC1232C2C5B360069619A /* Logger.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4493FCBE2C29B9CA00E4F2E6 /* digitlessTimerWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				4493FCBF2C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift */,
+				441DDF1B2C2C2A4500A9656B /* PhoneConnectionManager.swift */,
+				4493FCC32C29B9CC00E4F2E6 /* Assets.xcassets */,
+				4493FCC52C29B9CC00E4F2E6 /* Preview Content */,
+			);
+			path = "digitlessTimerWatch Watch App";
+			sourceTree = "<group>";
+		};
+		4493FCC52C29B9CC00E4F2E6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4493FCC62C29B9CC00E4F2E6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,14 +197,33 @@
 				44379F442AB57D65008E81BF /* Sources */,
 				44379F452AB57D65008E81BF /* Frameworks */,
 				44379F462AB57D65008E81BF /* Resources */,
+				4493FCCB2C29B9CC00E4F2E6 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4493FCC92C29B9CC00E4F2E6 /* PBXTargetDependency */,
+			);
+			name = digitlessTimer;
+			productName = digitlessTimer;
+			productReference = 44379F482AB57D65008E81BF /* digitlessTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4493FCBC2C29B9CA00E4F2E6 /* digitlessTimerWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4493FCCE2C29B9CC00E4F2E6 /* Build configuration list for PBXNativeTarget "digitlessTimerWatch" */;
+			buildPhases = (
+				4493FCB92C29B9CA00E4F2E6 /* Sources */,
+				4493FCBA2C29B9CA00E4F2E6 /* Frameworks */,
+				4493FCBB2C29B9CA00E4F2E6 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = digitlessTimer;
-			productName = digitlessTimer;
-			productReference = 44379F482AB57D65008E81BF /* digitlessTimer.app */;
+			name = digitlessTimerWatch;
+			productName = "digitlessTimerWatch Watch App";
+			productReference = 4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -133,11 +233,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					44379F472AB57D65008E81BF = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					4493FCBC2C29B9CA00E4F2E6 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
@@ -155,6 +258,7 @@
 			projectRoot = "";
 			targets = (
 				44379F472AB57D65008E81BF /* digitlessTimer */,
+				4493FCBC2C29B9CA00E4F2E6 /* digitlessTimerWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -169,6 +273,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4493FCBB2C29B9CA00E4F2E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4493FCC72C29B9CC00E4F2E6 /* Preview Assets.xcassets in Resources */,
+				4493FCC42C29B9CC00E4F2E6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -177,18 +290,48 @@
 			buildActionMask = 2147483647;
 			files = (
 				44379F5A2AB57D99008E81BF /* TimerManager.swift in Sources */,
+				441DDF172C2C287B00A9656B /* WatchConnectionManager.swift in Sources */,
 				44379F652AB5C764008E81BF /* SettingsView.swift in Sources */,
 				44379F5C2AB57F41008E81BF /* SetTimerView.swift in Sources */,
 				44379F4E2AB57D65008E81BF /* ContentView.swift in Sources */,
 				44379F4C2AB57D65008E81BF /* digitlessTimerApp.swift in Sources */,
 				44379F692AB5CDF0008E81BF /* UserDefaults.swift in Sources */,
+				444AC1252C2C5B360069619A /* Logger.swift in Sources */,
 				44379F612AB5B690008E81BF /* BackgroundColorView.swift in Sources */,
 				44379F5E2AB5B306008E81BF /* StopButtonView.swift in Sources */,
 				44379F632AB5B7EA008E81BF /* PreventSleepModifier.swift in Sources */,
+				441DDF1A2C2C29AC00A9656B /* WatchConnection.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4493FCB92C29B9CA00E4F2E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				446F5EB92C29CAFE0040CAC1 /* SettingsView.swift in Sources */,
+				446F5EBC2C29CB0E0040CAC1 /* PreventSleepModifier.swift in Sources */,
+				446F5EBA2C29CB070040CAC1 /* TimerManager.swift in Sources */,
+				446F5EB72C29CAF60040CAC1 /* SetTimerView.swift in Sources */,
+				441DDF1C2C2C2A4500A9656B /* PhoneConnectionManager.swift in Sources */,
+				446F5EB82C29CAFA0040CAC1 /* StopButtonView.swift in Sources */,
+				446F5EBB2C29CB0A0040CAC1 /* UserDefaults.swift in Sources */,
+				444AC1242C2C5B360069619A /* Logger.swift in Sources */,
+				4493FCC02C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift in Sources */,
+				446F5EB62C29CAF20040CAC1 /* BackgroundColorView.swift in Sources */,
+				446F5EB52C29CAEE0040CAC1 /* ContentView.swift in Sources */,
+				441DDF192C2C29AC00A9656B /* WatchConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4493FCC92C29B9CC00E4F2E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4493FCBC2C29B9CA00E4F2E6 /* digitlessTimerWatch */;
+			targetProxy = 4493FCC82C29B9CC00E4F2E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		44379F542AB57D66008E81BF /* Debug */ = {
@@ -311,7 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"digitlessTimer/Preview Content\"";
 				DEVELOPMENT_TEAM = K464C9RC38;
 				ENABLE_PREVIEWS = YES;
@@ -342,7 +485,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"digitlessTimer/Preview Content\"";
 				DEVELOPMENT_TEAM = K464C9RC38;
 				ENABLE_PREVIEWS = YES;
@@ -367,6 +510,77 @@
 			};
 			name = Release;
 		};
+		4493FCCC2C29B9CC00E4F2E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_ASSET_PATHS = "\"digitlessTimerWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = K464C9RC38;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Enough?";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = info.pyry.apps.digitlessTimer;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pyry.apps.digitlessTimer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		4493FCCD2C29B9CC00E4F2E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_ASSET_PATHS = "\"digitlessTimerWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = K464C9RC38;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Enough?";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = info.pyry.apps.digitlessTimer;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pyry.apps.digitlessTimer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,6 +598,15 @@
 			buildConfigurations = (
 				44379F572AB57D66008E81BF /* Debug */,
 				44379F582AB57D66008E81BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4493FCCE2C29B9CC00E4F2E6 /* Build configuration list for PBXNativeTarget "digitlessTimerWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4493FCCC2C29B9CC00E4F2E6 /* Debug */,
+				4493FCCD2C29B9CC00E4F2E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -22,11 +22,21 @@ struct SetTimerView: View {
     
     var body: some View {
         VStack {
-            Text("Set timer")
-                .font(.system(.title, design: .rounded, weight: .semibold))
-                .accessibilityFocused($headerHasAccessibilityFocus)
-                .onAppear { headerHasAccessibilityFocus = true }
-                .accessibilityAddTraits(.isHeader)
+            HStack {
+                Text("Set timer")
+                    #if os(iOS)
+                    .font(.system(.title, design: .rounded, weight: .semibold))
+                    #elseif os(watchOS)
+                    .font(.system(.headline, design: .rounded, weight: .semibold))
+                    #endif
+                    .accessibilityFocused($headerHasAccessibilityFocus)
+                    .onAppear { headerHasAccessibilityFocus = true }
+                    .accessibilityAddTraits(.isHeader)
+                #if os(watchOS)
+                Spacer()
+                SettingsButton()
+                #endif
+            }
             Stack {
                 PickerComponent(
                     title: "Hour",
@@ -54,7 +64,11 @@ struct SetTimerView: View {
                     .padding(.vertical, 10)
                     .frame(maxWidth: .infinity)
                     .background(Color.accentColor)
+                    #if os(iOS)
                     .cornerRadius(12)
+                    #elseif os(watchOS)
+                    .clipShape(Capsule())
+                    #endif
                     .padding()
             }
             .buttonStyle(.plain)
@@ -71,9 +85,15 @@ struct SetTimerView: View {
                     content()
                 }
             } else {
+                #if os(iOS)
                 HStack(spacing: 0) {
                     content()
                 }
+                #elseif os(watchOS)
+                HStack {
+                    content()
+                }
+                #endif
             }
         }
     }
@@ -86,12 +106,22 @@ struct PickerComponent: View {
     let accessibilitySuffix: String
     @Binding var selection: Int
 
+    private func label(_ i: Int) -> String {
+        #if os(iOS)
+        return "\(i) \(suffix)"
+        #elseif os(watchOS)
+        return "\(i)"
+        #endif
+    }
+
     var body: some View {
         Picker(title, selection: $selection) {
             ForEach(range, id: \.self) { i in
-                Text("\(i) \(suffix)")
+                Text(label(i))
                     .tag(i)
+                    #if os(iOS)
                     .font(.body)
+                    #endif
                     .accessibilityLabel("\(i) \(accessibilitySuffix)")
             }
         }
@@ -104,7 +134,11 @@ struct PickerComponent: View {
         func body(content: Content) -> some View {
             if dynamicTypeSize > .xxxLarge {
                 content
+                #if os(iOS)
                     .pickerStyle(.menu)
+                #elseif os(watchOS)
+                    .pickerStyle(.inline)
+                #endif
             } else {
                 content
                     .pickerStyle(.wheel)
