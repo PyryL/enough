@@ -30,12 +30,12 @@ struct TimerWidgetProvider: TimelineProvider {
             // use sample data
             entry = TimerWidgetEntry(date: .now, isGreen: true)
         } else {
-            let isGreen: Bool
+            let isGreen: Bool?
 
             if let targetDate = loadTimerTargetDate() {
                 isGreen = targetDate.timeIntervalSinceNow < 0
             } else {
-                isGreen = true
+                isGreen = nil
             }
 
             entry = TimerWidgetEntry(date: .now, isGreen: isGreen)
@@ -46,15 +46,24 @@ struct TimerWidgetProvider: TimelineProvider {
     /// Get the current and all known future states of the widget (real data).
     /// Use reload policy `never` here and use `WidgetCenter.reloadTimelines` in the UI.
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [TimerWidgetEntry] = []
+        let entries: [TimerWidgetEntry]
 
-        if let timerTargetDate = loadTimerTargetDate(), timerTargetDate.timeIntervalSinceNow >= 0 {
-            entries = [
-                TimerWidgetEntry(date: .now, isGreen: false),
-                TimerWidgetEntry(date: timerTargetDate, isGreen: true)
-            ]
+        if let timerTargetDate = loadTimerTargetDate() {
+            if timerTargetDate.timeIntervalSinceNow < 0 {
+                // timer target date is already past
+                entries = [
+                    TimerWidgetEntry(date: .now, isGreen: true)
+                ]
+            } else {
+                // timer target date is upcoming
+                entries = [
+                    TimerWidgetEntry(date: .now, isGreen: false),
+                    TimerWidgetEntry(date: timerTargetDate, isGreen: true)
+                ]
+            }
         } else {
-            entries = [TimerWidgetEntry(date: .now, isGreen: true)]
+            // timer not started
+            entries = [TimerWidgetEntry(date: .now, isGreen: nil)]
         }
 
         let timeline = Timeline(entries: entries, policy: .never)
@@ -64,23 +73,69 @@ struct TimerWidgetProvider: TimelineProvider {
 
 struct TimerWidgetEntry: TimelineEntry {
     let date: Date
-    let isGreen: Bool
+    /// `true` if the timer is green, `false` if it's red and `nil` if the timer is not started.
+    let isGreen: Bool?
 }
 
 struct TimerWidgetView: View {
     var entry: TimerWidgetProvider.Entry
 
-    private var color: Color {
-        entry.isGreen ? .green : .red
+    @available(iOS 17.0, *)
+    private var color: any ShapeStyle {
+        switch entry.isGreen {
+        case .none:
+            return .fill.tertiary
+        case .some(true):
+            return .green
+        case .some(false):
+            return .red
+        }
     }
 
     var body: some View {
         if #available(iOS 17.0, *) {
-            Color.clear
-                .containerBackground(color, for: .widget)
+            ZStack {
+                Color.clear
+
+                if entry.isGreen == nil {
+                    startTimerPrompt
+                }
+            }
+            .modifier(ContainerBackgroundModifier(isGreen: entry.isGreen))
         } else {
-            Color.clear
-                .background(color)
+            ZStack {
+                Color.clear
+
+                if entry.isGreen == nil {
+                    startTimerPrompt
+                        .padding()
+                }
+            }
+            .background(entry.isGreen == nil ? Color(uiColor: .tertiarySystemBackground) : entry.isGreen! ? Color.green : Color.red)
+        }
+    }
+
+    private var startTimerPrompt: some View {
+        Text("Set the timer in the app")
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
+    }
+
+    @available(iOS 17.0, *)
+    private struct ContainerBackgroundModifier: ViewModifier {
+        var isGreen: Bool?
+
+        func body(content: Content) -> some View {
+            Group {
+                switch isGreen {
+                case .none:
+                    content.containerBackground(.fill.tertiary, for: .widget)
+                case .some(true):
+                    content.containerBackground(.green, for: .widget)
+                case .some(false):
+                    content.containerBackground(.red, for: .widget)
+                }
+            }
         }
     }
 }
@@ -114,6 +169,7 @@ struct TimerWidget_Previews: PreviewProvider {
         Group {
             TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: false))
             TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: true))
+            TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: nil))
         }
         .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
