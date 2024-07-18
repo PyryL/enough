@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,10 +32,14 @@
 		446F5EBA2C29CB070040CAC1 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F592AB57D99008E81BF /* TimerManager.swift */; };
 		446F5EBB2C29CB0A0040CAC1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F682AB5CDF0008E81BF /* UserDefaults.swift */; };
 		446F5EBC2C29CB0E0040CAC1 /* PreventSleepModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F622AB5B7EA008E81BF /* PreventSleepModifier.swift */; };
+		447F99F52C4944FC00DA76DD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44379F682AB5CDF0008E81BF /* UserDefaults.swift */; };
 		4493FCC02C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FCBF2C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift */; };
 		4493FCC42C29B9CC00E4F2E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4493FCC32C29B9CC00E4F2E6 /* Assets.xcassets */; };
 		4493FCC72C29B9CC00E4F2E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4493FCC62C29B9CC00E4F2E6 /* Preview Assets.xcassets */; };
 		4493FCCA2C29B9CC00E4F2E6 /* digitlessTimerWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		44CF9B732C49392E0030DB43 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44CF9B722C49392E0030DB43 /* WidgetKit.framework */; };
+		44CF9B752C49392E0030DB43 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44CF9B742C49392E0030DB43 /* SwiftUI.framework */; };
+		44CF9B822C49392F0030DB43 /* widgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 44CF9B702C49392E0030DB43 /* widgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4493FCBC2C29B9CA00E4F2E6;
 			remoteInfo = "digitlessTimerWatch Watch App";
+		};
+		44CF9B802C49392F0030DB43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44379F402AB57D65008E81BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44CF9B6F2C49392E0030DB43;
+			remoteInfo = widgetsExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,6 +69,17 @@
 				4493FCCA2C29B9CC00E4F2E6 /* digitlessTimerWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44CF9B832C49392F0030DB43 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				44CF9B822C49392F0030DB43 /* widgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -84,7 +106,24 @@
 		4493FCBF2C29B9CA00E4F2E6 /* digitlessTimerWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = digitlessTimerWatchApp.swift; sourceTree = "<group>"; };
 		4493FCC32C29B9CC00E4F2E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4493FCC62C29B9CC00E4F2E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		44CF9B702C49392E0030DB43 /* widgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		44CF9B722C49392E0030DB43 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		44CF9B742C49392E0030DB43 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		44CF9B862C49392F0030DB43 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 44CF9B6F2C49392E0030DB43 /* widgetsExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		44CF9B762C49392F0030DB43 /* widgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (44CF9B862C49392F0030DB43 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = widgets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		44379F452AB57D65008E81BF /* Frameworks */ = {
@@ -101,6 +140,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44CF9B6D2C49392E0030DB43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44CF9B752C49392E0030DB43 /* SwiftUI.framework in Frameworks */,
+				44CF9B732C49392E0030DB43 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,6 +157,8 @@
 			children = (
 				44379F4A2AB57D65008E81BF /* digitlessTimer */,
 				4493FCBE2C29B9CA00E4F2E6 /* digitlessTimerWatch Watch App */,
+				44CF9B762C49392F0030DB43 /* widgets */,
+				44CF9B712C49392E0030DB43 /* Frameworks */,
 				44379F492AB57D65008E81BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,6 +168,7 @@
 			children = (
 				44379F482AB57D65008E81BF /* digitlessTimer.app */,
 				4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */,
+				44CF9B702C49392E0030DB43 /* widgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +238,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		44CF9B712C49392E0030DB43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44CF9B722C49392E0030DB43 /* WidgetKit.framework */,
+				44CF9B742C49392E0030DB43 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,11 +258,13 @@
 				44379F452AB57D65008E81BF /* Frameworks */,
 				44379F462AB57D65008E81BF /* Resources */,
 				4493FCCB2C29B9CC00E4F2E6 /* Embed Watch Content */,
+				44CF9B832C49392F0030DB43 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4493FCC92C29B9CC00E4F2E6 /* PBXTargetDependency */,
+				44CF9B812C49392F0030DB43 /* PBXTargetDependency */,
 			);
 			name = digitlessTimer;
 			productName = digitlessTimer;
@@ -226,6 +288,28 @@
 			productReference = 4493FCBD2C29B9CA00E4F2E6 /* digitlessTimerWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
+		44CF9B6F2C49392E0030DB43 /* widgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44CF9B872C49392F0030DB43 /* Build configuration list for PBXNativeTarget "widgetsExtension" */;
+			buildPhases = (
+				44CF9B6C2C49392E0030DB43 /* Sources */,
+				44CF9B6D2C49392E0030DB43 /* Frameworks */,
+				44CF9B6E2C49392E0030DB43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				44CF9B762C49392F0030DB43 /* widgets */,
+			);
+			name = widgetsExtension;
+			packageProductDependencies = (
+			);
+			productName = widgetsExtension;
+			productReference = 44CF9B702C49392E0030DB43 /* widgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,6 +324,9 @@
 						CreatedOnToolsVersion = 14.3.1;
 					};
 					4493FCBC2C29B9CA00E4F2E6 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					44CF9B6F2C49392E0030DB43 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -259,6 +346,7 @@
 			targets = (
 				44379F472AB57D65008E81BF /* digitlessTimer */,
 				4493FCBC2C29B9CA00E4F2E6 /* digitlessTimerWatch */,
+				44CF9B6F2C49392E0030DB43 /* widgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -279,6 +367,13 @@
 			files = (
 				4493FCC72C29B9CC00E4F2E6 /* Preview Assets.xcassets in Resources */,
 				4493FCC42C29B9CC00E4F2E6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44CF9B6E2C49392E0030DB43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +418,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		44CF9B6C2C49392E0030DB43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				447F99F52C4944FC00DA76DD /* UserDefaults.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -330,6 +433,11 @@
 			isa = PBXTargetDependency;
 			target = 4493FCBC2C29B9CA00E4F2E6 /* digitlessTimerWatch */;
 			targetProxy = 4493FCC82C29B9CC00E4F2E6 /* PBXContainerItemProxy */;
+		};
+		44CF9B812C49392F0030DB43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44CF9B6F2C49392E0030DB43 /* widgetsExtension */;
+			targetProxy = 44CF9B802C49392F0030DB43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -581,6 +689,71 @@
 			};
 			name = Release;
 		};
+		44CF9B842C49392F0030DB43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = K464C9RC38;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pyry.apps.digitlessTimer.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		44CF9B852C49392F0030DB43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = K464C9RC38;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = widgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = widgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = info.pyry.apps.digitlessTimer.widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -607,6 +780,15 @@
 			buildConfigurations = (
 				4493FCCC2C29B9CC00E4F2E6 /* Debug */,
 				4493FCCD2C29B9CC00E4F2E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44CF9B872C49392F0030DB43 /* Build configuration list for PBXNativeTarget "widgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44CF9B842C49392F0030DB43 /* Debug */,
+				44CF9B852C49392F0030DB43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
