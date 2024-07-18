@@ -32,8 +32,15 @@ class PhoneConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
         }
 
         // send the new info
-        let userInfo: [String:Any] = [
-            "action": action
+        let actionData: Data
+        do {
+            actionData = try JSONEncoder().encode(action)
+        } catch {
+            Logger.watch.log("watch could not encode action: \(error)")
+            return
+        }
+        let userInfo = [
+            "action": actionData
         ]
         session.transferUserInfo(userInfo)
         Logger.watch.log("watch sent user info: \(userInfo)")
@@ -42,7 +49,8 @@ class PhoneConnectionManager: NSObject, WatchConnectionProtocol, WCSessionDelega
 
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         Logger.watch.log("watch received user info: \(userInfo)")
-        if let action = userInfo["action"] as? WatchConnectionAction {
+        if let actionData = userInfo["action"] as? Data,
+           let action = try? JSONDecoder().decode(WatchConnectionAction.self, from: actionData) {
             delegate?.watchConnection(didReceive: action)
         }
     }

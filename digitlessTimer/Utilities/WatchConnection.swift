@@ -17,7 +17,7 @@ protocol WatchConnectionDelegate {
     func watchConnection(didReceive action: WatchConnectionAction)
 }
 
-enum WatchConnectionAction {
+enum WatchConnectionAction: Codable {
     case timerStarted(endDate: Date)
     case timerStopped
 }
