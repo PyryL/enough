@@ -48,7 +48,7 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
             timerTargetDate = nil
             state = .notStarted
         }
-        setTimerForTarget()
+        setTimerForTarget(timeintervalSinceNow: timerTargetDate?.timeIntervalSinceNow ?? -1)
     }
     
     func startTimer(duration: TimeInterval) {
