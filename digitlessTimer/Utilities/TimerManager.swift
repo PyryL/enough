@@ -58,13 +58,14 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
 
     /// - Parameter isFromOtherDevice: `true` if the commands originates from another device (Watch or iPhone).
     private func startTimer(date: Date, isFromOtherDevice: Bool) {
-        let isAlreadyPassed = date.timeIntervalSinceNow < 0
+        let timeintervalSinceNow = date.timeIntervalSinceNow
+        let isAlreadyPassed = timeintervalSinceNow < 0
         timerTargetDate = date
         state = isAlreadyPassed ? .green : .red
         UserDefaults.suite.setValue(date.timeIntervalSinceReferenceDate,
                                     forKey: UserDefaultsKeys.targetDate)
         if !isAlreadyPassed {
-            setTimerForTarget()
+            setTimerForTarget(timeintervalSinceNow: timeintervalSinceNow)
         }
         if !isFromOtherDevice {
             watchConnection.sendAction(.timerStarted(endDate: date))
@@ -74,23 +75,19 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
         #endif
     }
 
-    private func setTimerForTarget() {
+    private func setTimerForTarget(timeintervalSinceNow: Double) {
         targetTimer?.invalidate()
         targetTimer = nil
         #if os(iOS)
-        Logger.watch.log("ios invalidating timer; \(self.timerTargetDate?.timeIntervalSinceNow ?? -100)")
+        Logger.watch.log("ios invalidating timer; \(timeintervalSinceNow)")
         #endif
-        guard let timerTargetDate else {
-            return
-        }
-        let secondsToGo = timerTargetDate.timeIntervalSinceNow
-        guard secondsToGo > 0 else {
+        guard timeintervalSinceNow > 0 else {
             return
         }
         #if os(iOS)
-        Logger.watch.log("ios setting timer \(secondsToGo)")
+        Logger.watch.log("ios setting timer \(timeintervalSinceNow)")
         #endif
-        targetTimer = Timer.scheduledTimer(withTimeInterval: secondsToGo, repeats: false) { _ in
+        targetTimer = Timer.scheduledTimer(withTimeInterval: timeintervalSinceNow, repeats: false) { _ in
             self.targetTimer?.invalidate()
             self.targetTimer = nil
             self.state = .green
