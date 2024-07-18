@@ -10,9 +10,7 @@ import SwiftUI
 
 struct TimerWidgetProvider: TimelineProvider {
     private func loadTimerTargetDate() -> Date? {
-        // TODO: this does not work yet, since user defaults uses standard
         let sinceReference = UserDefaults.suite.double(forKey: UserDefaultsKeys.targetDate)
-        print("loading user defaults", sinceReference, UserDefaults.suite.integer(forKey: UserDefaultsKeys.timerSecs))
         guard sinceReference > 0 else {
             return nil
         }

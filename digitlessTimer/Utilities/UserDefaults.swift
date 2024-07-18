@@ -9,7 +9,13 @@ import Foundation
 
 extension UserDefaults {
     /// Storage suite to use.
-    static let suite = UserDefaults.standard
+    static var suite: UserDefaults {
+        guard let suite = UserDefaults(suiteName: "group.info.pyry.apps.digitlessTimer") else {
+            print("UserDefaults suite creation failed")
+            return .standard
+        }
+        return suite
+    }
 }
 
 class UserDefaultsKeys {
