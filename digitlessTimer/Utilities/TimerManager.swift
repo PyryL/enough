@@ -117,11 +117,13 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
         #if os(iOS)
         Logger.watch.log("ios handling action \(action, privacy: .public)")
         #endif
-        switch action {
-        case .timerStarted(let endDate):
-            startTimer(date: endDate, isFromOtherDevice: true)
-        case .timerStopped:
-            resetTimer(isFromOtherDevice: true)
+        DispatchQueue.main.async {
+            switch action {
+            case .timerStarted(let endDate):
+                self.startTimer(date: endDate, isFromOtherDevice: true)
+            case .timerStopped:
+                self.resetTimer(isFromOtherDevice: true)
+            }
         }
     }
 
