@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 #if os(iOS)
 import os
 #endif
@@ -70,6 +71,7 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
         if !isFromOtherDevice {
             watchConnection.sendAction(.timerStarted(endDate: date))
         }
+        WidgetCenter.shared.reloadAllTimelines()
         #if os(iOS)
         Logger.watch.log("ios finished handling action \(date, privacy: .public); \(isAlreadyPassed) \(isFromOtherDevice)")
         #endif
@@ -107,6 +109,7 @@ class TimerManager: ObservableObject, WatchConnectionDelegate {
         if !isFromOtherDevice {
             watchConnection.sendAction(.timerStopped)
         }
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     @objc private func appBecameActive(notification: NSNotification) {
