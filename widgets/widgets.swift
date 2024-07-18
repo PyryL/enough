@@ -88,12 +88,17 @@ struct TimerWidgetView: View {
 struct widgets: Widget {
     let kind: String = "info.pyry.apps.digitlessTimer.widgets.timerWidget"
 
+    private let families: [WidgetFamily] = [
+        .systemSmall, .systemMedium, .systemLarge, .systemExtraLarge
+    ]
+
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: TimerWidgetProvider()) { entry in
             TimerWidgetView(entry: entry)
         }
         .configurationDisplayName("Timer Widget")
         .description("Widget showing either red or green.")
+        .supportedFamilies(families)
     }
 }
 
