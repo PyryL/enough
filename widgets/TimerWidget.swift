@@ -82,15 +82,12 @@ struct TimerWidgetView: View {
 
     @Environment(\.widgetFamily) var widgetFamily
 
-    private var color: any ShapeStyle {
-        switch entry.isGreen {
-        case .none:
-            return .fill.tertiary
-        case .some(true):
-            return .green
-        case .some(false):
-            return .red
-        }
+    private var title: String {
+        entry.isGreen == nil ? "Not started" : entry.isGreen! ? "Enough" : "Not enough"
+    }
+
+    private var systemImage: String {
+        entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown"
     }
 
     var body: some View {
@@ -104,55 +101,34 @@ struct TimerWidgetView: View {
     }
 
     private var accessoryView: some View {
-        Label(entry.isGreen == nil ? "Not started" : entry.isGreen! ? "Enough" : "Not enough",
-              systemImage: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
-        .font(widgetFamily == .accessoryRectangular ? .headline : .body)
-        .containerBackground(.fill, for: .widget)
+        Label(title, systemImage: systemImage)
+            .font(widgetFamily == .accessoryRectangular ? .headline : .body)
+            .containerBackground(.fill, for: .widget)
     }
 
     private var accessoryCircularView: some View {
-        VStack {
-            Image(systemName: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 60, maxHeight: 60)
-                .foregroundStyle(entry.isGreen == nil ? .tertiary : .primary)
-        }
-        .containerBackground(.fill, for: .widget)
+        Image(systemName: systemImage)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: 60, maxHeight: 60)
+            .foregroundStyle(entry.isGreen == nil ? .tertiary : .primary)
+            .containerBackground(.fill, for: .widget)
     }
 
     private var systemWidgetView: some View {
-        Group {
-            if #available(iOS 17.0, *) {
-                ZStack {
-                    Color.clear
+        ZStack {
+            Color.clear
 
-                    if entry.isGreen == nil {
-                        startTimerPrompt
-                    }
-                }
-                .modifier(ContainerBackgroundModifier(isGreen: entry.isGreen))
-            } else {
-                ZStack {
-                    Color.clear
-
-                    if entry.isGreen == nil {
-                        startTimerPrompt
-                            .padding()
-                    }
-                }
-                .background(entry.isGreen == nil ? Color(uiColor: .tertiarySystemBackground) : entry.isGreen! ? Color.green : Color.red)
+            if entry.isGreen == nil {
+                Text("Timer not started")
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
             }
         }
+        .modifier(ColoredContainerBackgroundModifier(isGreen: entry.isGreen))
     }
 
-    private var startTimerPrompt: some View {
-        Text("Set the timer in the app")
-            .foregroundStyle(.secondary)
-            .multilineTextAlignment(.center)
-    }
-
-    private struct ContainerBackgroundModifier: ViewModifier {
+    private struct ColoredContainerBackgroundModifier: ViewModifier {
         var isGreen: Bool?
 
         func body(content: Content) -> some View {
@@ -187,7 +163,7 @@ struct TimerWidget: Widget {
     }
 }
 
-#Preview(as: .accessoryCircular) {
+#Preview(as: .systemSmall) {
     TimerWidget()
 } timeline: {
     TimerWidgetEntry(date: .now, isGreen: false)
