@@ -140,7 +140,7 @@ struct TimerWidgetView: View {
     }
 }
 
-struct widgets: Widget {
+struct TimerWidget: Widget {
     let kind: String = "info.pyry.apps.digitlessTimer.widgets.timerWidget"
 
     private let families: [WidgetFamily] = [
