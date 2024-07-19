@@ -80,6 +80,8 @@ struct TimerWidgetEntry: TimelineEntry {
 struct TimerWidgetView: View {
     var entry: TimerWidgetProvider.Entry
 
+    @Environment(\.widgetFamily) var widgetFamily
+
     @available(iOS 17.0, *)
     private var color: any ShapeStyle {
         switch entry.isGreen {
@@ -93,25 +95,68 @@ struct TimerWidgetView: View {
     }
 
     var body: some View {
-        if #available(iOS 17.0, *) {
-            ZStack {
-                Color.clear
-
-                if entry.isGreen == nil {
-                    startTimerPrompt
-                }
-            }
-            .modifier(ContainerBackgroundModifier(isGreen: entry.isGreen))
+        if widgetFamily == .accessoryInline || widgetFamily == .accessoryRectangular {
+            accessoryView
+        } else if widgetFamily == .accessoryCircular {
+            accessoryCircularView
         } else {
-            ZStack {
-                Color.clear
+            systemWidgetView
+        }
+    }
 
-                if entry.isGreen == nil {
-                    startTimerPrompt
-                        .padding()
-                }
+    private var accessoryView: some View {
+        Group {
+            if #available(iOS 17.0, *) {
+                Label(entry.isGreen == nil ? "Not started" : entry.isGreen! ? "Enough" : "Not enough",
+                      systemImage: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
+                .font(widgetFamily == .accessoryRectangular ? .headline : .body)
+                .containerBackground(.fill, for: .widget)
+            } else {
+                //
             }
-            .background(entry.isGreen == nil ? Color(uiColor: .tertiarySystemBackground) : entry.isGreen! ? Color.green : Color.red)
+        }
+    }
+
+    private var accessoryCircularView: some View {
+        Group {
+            if #available(iOS 17.0, *) {
+                VStack {
+                    Image(systemName: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 60, maxHeight: 60)
+                        .foregroundStyle(entry.isGreen == nil ? .tertiary : .primary)
+                }
+                .containerBackground(.fill, for: .widget)
+            } else {
+                Image(systemName: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
+                    .background(Color(uiColor: .systemFill))
+            }
+        }
+    }
+
+    private var systemWidgetView: some View {
+        Group {
+            if #available(iOS 17.0, *) {
+                ZStack {
+                    Color.clear
+
+                    if entry.isGreen == nil {
+                        startTimerPrompt
+                    }
+                }
+                .modifier(ContainerBackgroundModifier(isGreen: entry.isGreen))
+            } else {
+                ZStack {
+                    Color.clear
+
+                    if entry.isGreen == nil {
+                        startTimerPrompt
+                            .padding()
+                    }
+                }
+                .background(entry.isGreen == nil ? Color(uiColor: .tertiarySystemBackground) : entry.isGreen! ? Color.green : Color.red)
+            }
         }
     }
 
@@ -144,7 +189,7 @@ struct TimerWidget: Widget {
     let kind: String = "info.pyry.apps.digitlessTimer.widgets.timerWidget"
 
     private let families: [WidgetFamily] = [
-        .systemSmall, .systemMedium, .systemLarge, .systemExtraLarge
+        .systemSmall, .systemMedium, .systemLarge, .systemExtraLarge, .accessoryInline, .accessoryRectangular, .accessoryCircular
     ]
 
     var body: some WidgetConfiguration {
@@ -171,6 +216,6 @@ struct TimerWidget_Previews: PreviewProvider {
             TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: true))
             TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: nil))
         }
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
     }
 }
