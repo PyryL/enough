@@ -82,7 +82,6 @@ struct TimerWidgetView: View {
 
     @Environment(\.widgetFamily) var widgetFamily
 
-    @available(iOS 17.0, *)
     private var color: any ShapeStyle {
         switch entry.isGreen {
         case .none:
@@ -105,34 +104,21 @@ struct TimerWidgetView: View {
     }
 
     private var accessoryView: some View {
-        Group {
-            if #available(iOS 17.0, *) {
-                Label(entry.isGreen == nil ? "Not started" : entry.isGreen! ? "Enough" : "Not enough",
-                      systemImage: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
-                .font(widgetFamily == .accessoryRectangular ? .headline : .body)
-                .containerBackground(.fill, for: .widget)
-            } else {
-                //
-            }
-        }
+        Label(entry.isGreen == nil ? "Not started" : entry.isGreen! ? "Enough" : "Not enough",
+              systemImage: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
+        .font(widgetFamily == .accessoryRectangular ? .headline : .body)
+        .containerBackground(.fill, for: .widget)
     }
 
     private var accessoryCircularView: some View {
-        Group {
-            if #available(iOS 17.0, *) {
-                VStack {
-                    Image(systemName: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 60, maxHeight: 60)
-                        .foregroundStyle(entry.isGreen == nil ? .tertiary : .primary)
-                }
-                .containerBackground(.fill, for: .widget)
-            } else {
-                Image(systemName: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
-                    .background(Color(uiColor: .systemFill))
-            }
+        VStack {
+            Image(systemName: entry.isGreen == nil ? "play.slash" : entry.isGreen! ? "hand.thumbsup" : "hand.thumbsdown")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 60, maxHeight: 60)
+                .foregroundStyle(entry.isGreen == nil ? .tertiary : .primary)
         }
+        .containerBackground(.fill, for: .widget)
     }
 
     private var systemWidgetView: some View {
@@ -166,7 +152,6 @@ struct TimerWidgetView: View {
             .multilineTextAlignment(.center)
     }
 
-    @available(iOS 17.0, *)
     private struct ContainerBackgroundModifier: ViewModifier {
         var isGreen: Bool?
 
@@ -202,20 +187,10 @@ struct TimerWidget: Widget {
     }
 }
 
-//#Preview(as: .systemSmall) {
-//    widgets()
-//} timeline: {
-//    TimerWidgetEntry(date: .now, isGreen: false)
-//    TimerWidgetEntry(date: .now, isGreen: true)
-//}
-
-struct TimerWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: false))
-            TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: true))
-            TimerWidgetView(entry: TimerWidgetEntry(date: .now, isGreen: nil))
-        }
-        .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
-    }
+#Preview(as: .accessoryCircular) {
+    TimerWidget()
+} timeline: {
+    TimerWidgetEntry(date: .now, isGreen: false)
+    TimerWidgetEntry(date: .now, isGreen: true)
+    TimerWidgetEntry(date: .now, isGreen: nil)
 }
